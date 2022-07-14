@@ -6,6 +6,9 @@ end
 
 vim.cmd([[
 
+tnoremap <Esc> <C-\><C-n>
+
+nnoremap <c-z> <nop>
 nmap <F6> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
@@ -17,14 +20,12 @@ map <C-t><left> :tabp<cr>
 map <C-t><right> :tabn<cr>
 
 let g:material_terminal_italics = 1
-let g:material_theme_style = 'darker'
+let g:material_theme_style = 'palenight'
 colorscheme material
 
 if (has('termguicolors'))
   set termguicolors
 endif
-
-
 
 
 
@@ -35,6 +36,15 @@ return require('packer').startup(function(use)
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'
     use 'wbthomason/packer.nvim'
+    
+    use {
+	'goolord/alpha-nvim',
+	requires = { 'kyazdani42/nvim-web-devicons' },
+	config = function ()
+	require'alpha'.setup(require'alpha.themes.dashboard'.config)
+	end
+    }
+    use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     use 'kaicataldo/material.vim'
     use 'marp-team/marp'
